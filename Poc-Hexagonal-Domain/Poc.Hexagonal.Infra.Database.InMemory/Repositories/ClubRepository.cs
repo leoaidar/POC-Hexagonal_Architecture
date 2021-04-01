@@ -10,16 +10,23 @@ namespace Poc.Hexagonal.Infra.Database.InMemory.Repositories
     public class ClubRepository : IClubRepository
     {
         private static int _incrementId = 0;
+        private readonly List<Club> _list;
+
+        public ClubRepository()
+        {
+            _list = new List<Club> { new Club { Name = "Social Club" } };
+            _incrementId = _list.Count;
+        }
 
         public Task<IEnumerable<Club>> GetAll()
-        {
-            var list = new List<Club> { new Club { Name = "Social Club" } };
-            return Task.FromResult<IEnumerable<Club>>(list);
+        {            
+            return Task.FromResult<IEnumerable<Club>>(_list);
         }
 
         public Task<int> Insert(Club club)
         {
-            _incrementId = _incrementId + 1;
+            club.Id = _incrementId = _list.Count + 1;
+            _list.Add(club);
             return Task.FromResult<int>(_incrementId); 
         }
     }

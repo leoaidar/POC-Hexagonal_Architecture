@@ -10,7 +10,7 @@ namespace Poc.Hexagonal.Infra.Email.Operations
     {
         public Task SendEmail(string from, string to, string subject, string body)
         {
-            throw new NotImplementedException();
+            return Task.FromResult<bool>(true);
         }
     }
 }
