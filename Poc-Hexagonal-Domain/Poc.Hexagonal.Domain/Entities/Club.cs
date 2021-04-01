@@ -6,5 +6,6 @@ namespace Poc.Hexagonal.Domain.Entities
 {
     public class Club
     {
+        public string Name { get; set; }
     }
 }
